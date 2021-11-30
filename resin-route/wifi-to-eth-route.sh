@@ -24,12 +24,17 @@ iptables -t nat -A POSTROUTING -o $wlan -j MASQUERADE
 iptables -A FORWARD -i $wlan -o $eth -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A FORWARD -i $eth -o $wlan -j ACCEPT
 
-sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
+cat <<EOF > /etc/systemd/network/eth0.network
+[Match]
+Name=$eth
 
-ifconfig $eth $ip_address netmask $netmask
+[Network]
+Address=$ip_address
+Netmask=$netmask
+IPForward=yes
+EOF
 
-# Remove default route created by dhcpcd
-ip route del 0/0 dev $eth &> /dev/null
+systemctl restart systemd-networkd
 
 echo -e "interface=$eth\n\
 bind-interfaces\n\
