@@ -8,7 +8,7 @@ post-provisioning: >-
   After flashing your device allow some time for the application to download.
 
   WiFi-to-Ethernet will automatically join the configured WiFi network and present a DHCP server
-  on its Ethernet port and route traffic from any connected devices.
+  on its Ethernet port and route traffic from any Ethernet-connected devices to the WiFi network.
 
   If no WiFi network is configured in balenaOS, or the network isn't available, the included
   [wifi-connect](https://github.com/balenablocks/wifi-connect) container will allow you to
@@ -16,8 +16,8 @@ post-provisioning: >-
 
   ## Known issues
   
-  If you're using the using an ***rtl8192cu***-based WiFi dongle on a Raspberry Pi 1/2 you **must**
-  use ***balenaOS 2.26.0+rev1*** for the driver to work correctly.
+  If you're using the using an *rtl8192cu*-based WiFi dongle on a Raspberry Pi 1/2 you
+  **must** use *balenaOS 2.26.0+rev1* for the driver to work correctly.
 assets:
   repository:
     type: blob.asset
