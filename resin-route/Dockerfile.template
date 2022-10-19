@@ -1,11 +1,9 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-debian:stretch
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian:stretch
 
 WORKDIR /usr/src/app
 ENV INITSYSTEM on
 
-RUN apt-get update && \
-    apt-get install -yq --no-install-recommends \
-          dnsmasq iptables
+RUN install_packages dnsmasq iptables
 
 COPY wifi-to-eth-route.sh ./
 
